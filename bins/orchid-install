@@ -1,2 +1,2 @@
 #!/bin/bash
-emerge -av --autounmask-write --autounmask=y
+emerge -av --autounmask-write --autounmask=y $1
