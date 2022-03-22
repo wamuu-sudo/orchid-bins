@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Mise à jour de la configuration de GRUB"
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+

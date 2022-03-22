@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Activation des noyaux latest."
+echo sys-kernel/gentoo-kernel-bin ~amd64 >> /etc/portage/package.accept_keywords/zz-autounmask
+echo virtual/dist-kernel ~amd64 >> /etc/portage/package.accept_keywords/zz-autounmask
