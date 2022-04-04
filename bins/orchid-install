@@ -1,2 +1,2 @@
 #!/bin/bash
-emerge -av --autounmask-write --autounmask=y $1 && sudo dispatch-conf
+emerge -av --autounmask-write --autounmask=y $1 | sudo dispatch-conf
