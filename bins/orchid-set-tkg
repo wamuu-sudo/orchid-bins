@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo emerge app-arch/lz4 schedtool
 cd /usr/share/orchid/tools/kernel
 sudo ./update-kernel-versions.sh
 sudo ./install.sh install
