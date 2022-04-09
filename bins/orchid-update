@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo eix-sync && sudo emerge -avuDN @world
+sudo eix-sync && sudo emerge -avuDN @world && flatpak update
