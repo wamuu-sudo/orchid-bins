@@ -1,0 +1,3 @@
+#!/bin/bash
+sudo /usr/share/orchid/tools/kernel/update-kernel-versions.sh
+sudo /usr/share/orchid/tools/kernel/install.sh install

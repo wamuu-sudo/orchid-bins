@@ -1,0 +1,3 @@
+#!/bin/bash
+mkdir -p /usr/share/orchid/tools/kernel
+git clone https://github.com/Frogging-Family/linux-tkg /usr/share/orchid/tools/kernel
