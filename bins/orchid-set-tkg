@@ -1,5 +1,8 @@
 #!/bin/bash
 sudo emerge -q app-arch/lz4 schedtool
 cd /usr/share/orchid/tools/kernel
+sed "/_configfile=/c\_configfile=\"running-kernel\"" /usr/share/orchid/tools/kernel/customization.cfg > tmp.cfg
+cp tmp.cfg /usr/share/orchid/tools/kernel/customization.cfg
+rm -f tmp.cfg
 sudo ./update-kernel-versions.sh
 sudo ./install.sh install
