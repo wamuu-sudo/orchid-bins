@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "Vous avez trouvé une commande cachée ! Bien joué !"
+echo ""
+echo "Vérification des prérequis ..."
+sudo emerge -vq --noreplace dev-python/pip > /dev/null
+pip install --user cli-snakegame > /dev/null
+echo "Lancement du jeu"
+~/.local/bin/pysnake
