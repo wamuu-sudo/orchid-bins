@@ -2,7 +2,7 @@
 echo "Vous avez trouvé une commande cachée ! Bien joué !"
 echo ""
 echo "Vérification des prérequis ..."
-wget https://bruxy.regnet.cz/linux/housenka/housenka.sh -o ~/.local/bin/
+wget https://bruxy.regnet.cz/linux/housenka/housenka.sh -P ~/.local/bin/
 chmod +x ~/.local/bin/housenka.sh
 echo "Lancement du jeu"
 ~/.local/bin/housenka.sh
