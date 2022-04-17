@@ -2,7 +2,7 @@
 echo "Vous avez trouvé une commande cachée ! Bien joué !"
 echo ""
 echo "Vérification des prérequis ..."
-sudo emerge -vq --noreplace dev-python/pip > /dev/null
-pip install --user cli-snakegame > /dev/null
+wget https://bruxy.regnet.cz/linux/housenka/housenka.sh -o ~/.local/bin/
+chmod +x ~/.local/bin/housenka.sh
 echo "Lancement du jeu"
-~/.local/bin/pysnake
+~/.local/bin/housenka.sh
