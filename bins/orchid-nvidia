@@ -2,3 +2,4 @@
 echo "Activation des pilotes Nvidia et du support de NVENC."
 echo x11-drivers/nvidia-drivers ~amd64 >> /etc/portage/package.accept_keywords/zz-autounmask
 echo media-video/nvidia-video-codec ~amd64 >> /etc/portage/package.accept_keywords/zz-autounmask
+sudo orchid-update
