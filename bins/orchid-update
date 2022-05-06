@@ -1,2 +1,4 @@
 #!/bin/bash
+echo "N'oubliez de vous sortir de votre chambre, c'est important de voir la lumière du soleil"
+echo ""
 sudo eix-sync -q && sudo emerge -qavuDN @world && flatpak update && orchid-boot-update && emerge --depclean -q
