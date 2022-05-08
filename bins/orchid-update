@@ -1,7 +1,7 @@
 #!/bin/bash
 echo "N'oubliez de vous sortir de votre chambre, c'est important de voir la lumière du soleil."
 echo ""
-echo "Syncro des métadata, de la liste des paquets disponibles, et vérification de la présence des dépendances ..."
+echo "Syncro des métadata, de la liste des paquets disponibles, et vérification de la présence d'updates ..."
 echo ""
 echo "Attention, si un changement des USE_FLAGS est requis, la commande dispatch-conf est nécessaire pour prendre en compte le changement !"
 sudo eix-sync -q && sudo emerge -qavuDN @world && flatpak update && orchid-boot-update && emerge --depclean -q
