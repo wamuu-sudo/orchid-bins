@@ -3,4 +3,5 @@ echo ""
 echo "Syncro des métadatas, de la liste des paquets disponibles, et vérification de la présence de mises à jour ..."
 echo ""
 echo "Attention, si un changement des USE_FLAGS est requis, la commande dispatch-conf est nécessaire pour prendre en compte le changement !"
+echo ""
 sudo eix-sync -q && sudo emerge -qavuDN @world && flatpak update && orchid-boot-update && emerge --depclean -q
