@@ -62,6 +62,7 @@ echo "[ok]"
 echo "Récupération et activation de la méta-commande Orchid ..."
 cd /usr/bin
 wget https://dl.orchid-linux.org/misc/tools/orchid-sync
+sudo chmod +x /usr/bin/orchid-sync
 sleep 2
 echo "[ok]"
 echo "Activation de la suite de commandes Orchid ..."
