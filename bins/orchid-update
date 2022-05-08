@@ -1,5 +1,4 @@
 #!/bin/bash
-echo "N'oubliez de vous sortir de votre chambre, c'est important de voir la lumière du soleil."
 echo ""
 echo "Syncro des métadata, de la liste des paquets disponibles, et vérification de la présence d'updates ..."
 echo ""
