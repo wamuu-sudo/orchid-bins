@@ -2,4 +2,6 @@
 echo "Activation des pilotes Nvidia latest ..."
 echo x11-drivers/nvidia-drivers ~amd64 >> /etc/portage/package.accept_keywords/zz-autounmask
 echo media-video/nvidia-video-codec ~amd64 >> /etc/portage/package.accept_keywords/zz-autounmask
+euse -E nvenc
+sudo emerge -av nvidia-drivers nvidia-video-codec nvidia-video-codec
 sudo orchid-update
