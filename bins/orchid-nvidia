@@ -1,7 +1,8 @@
 #!/bin/bash
 echo "Activation des pilotes Nvidia latest ..."
+echo media-video/ffmpeg nvenc >> /etc/portage/package.use/nvenc
 echo x11-drivers/nvidia-drivers ~amd64 >> /etc/portage/package.accept_keywords/zz-autounmask
 echo media-video/nvidia-video-codec ~amd64 >> /etc/portage/package.accept_keywords/zz-autounmask
 euse -E nvenc
-sudo emerge -av nvidia-drivers nvidia-video-codec nvidia-video-codec
+sudo emerge -avuN nvidia-drivers nvidia-video-codec nvidia-video-codec ffmpeg
 sudo orchid-update
