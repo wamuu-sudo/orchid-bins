@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 #===================================================================================
 #
-# FILE : orchid-convert.sh
+# FILE : orchid-transform.sh
 #
 # USAGE : su -
-#         ./orchid-convert.sh
+#         ./orchid-transform.sh
 #
-# DESCRIPTION : Script d'installation pour Orchid Linux.
+# DESCRIPTION : Script d'installation des outils Orchid
 #
 # BUGS : ---
 # NOTES : ---
-# CONTRUBUTORS : Babilinx, Chevek, Crystal, Wamuu
+# CONTRUBUTORS : Babilinx, Chevek, Crystal, Wamuu (hyda)
 # CREATED : may 2022
 # REVISION: 8 mai 2022
 #

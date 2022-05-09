@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+#===================================================================================
+#
+# FILE : orchid-optimizer.sh
+#
+# USAGE : su -
+#         ./orchid-optimizer.sh
+#
+# DESCRIPTION : Script d'installation pour Orchid Linux.
+#
+# BUGS : ---
+# NOTES : ---
+# CONTRUBUTORS : Babilinx, Chevek, Crystal, Wamuu (hyda)
+# CREATED : may 2022
+# REVISION: 8 mai 2022
+#
+# LICENCE :
+# Copyright (C) 2022 Babilinx, Yannick Defais aka Chevek, Wamuu-sudo aka Hyda, Crystal
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see https://www.gnu.org/licenses/.
+#===================================================================================
+
+echo ""
+echo "Bienvenue sur le script d'optimisation d'Orchid."
+echo "Cet outil permets d'optimiser votre système, avec les fonctionnalités de votre processeur utilisé par GCC."
+echo "Merci de noter que cet outil est en cours de développement."
+sleep 2
+echo "Nous vérifions que votre système est à jour ..."
+sudo orchid-update
+echo "[ok]"
+echo ""
+echo "Activation des optimisations dans le fichier /etc/portage/make.conf ..."
+sudo sed -i 's/-O2 -pipe/-march=native -O2 -pipe/g' /etc/portage/make.conf
+echo "[ok]"
+echo ""
+echo "Nous allons recompiler GCC avec ces nouvelles optimisations. Attention, cette compilation peut prendre plusieurs heures !"
+sudo emerge -vq gcc
+echo "[ok]"
+echo "GCC est désormais optimisé par rapport à votre processeur."
+echo "Nous allons ensuite recompiler l'entièreté du système avec ces nouvelles optimisations. Attention, cette compilation peut prendre plusieurs heures ou même jours !"
+sudo emerge --emptytree @installed -vq
+echo "[ok]"
+echo "Félicitations ! Vous disposez d'un système optimisé complet, de façon stable."
+echo "Il est conseillé de reboot votre système afin de prendre en compte les changements."
+echo "Merci de nous avoir choisis !"
