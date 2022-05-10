@@ -1,2 +1,2 @@
 #!/bin/bash
-emerge -C $1 && emerge --depclean
+sudo emerge -C $1 && sudo emerge --depclean
