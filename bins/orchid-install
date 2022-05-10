@@ -1,4 +1,4 @@
 #!/bin/bash
-emerge -qav --autounmask-write --autounmask=y $@
+sudo emerge -qav --autounmask-write --autounmask=y $@
 echo "Attention, si vous installez un paquet masqué, il faut utiliser la commande dispatch-conf afin de prendre en compte les nouveaux USE."
 echo "Il faut relancer la commande orchid-install par la suite."
