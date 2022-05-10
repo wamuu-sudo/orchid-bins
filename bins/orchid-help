@@ -1,0 +1,137 @@
+#!/usr/bin/env bash
+#===================================================================================
+#
+# FILE : orchid-help
+#
+# USAGE : orchid-help
+#
+# DESCRIPTION : Commande d'aide pour les outils Orchid.
+#
+# BUGS : ---
+# NOTES : ---
+# CONTRUBUTORS : Babilinx, Chevek, Crystal, Wamuu
+# CREATED : mai 2022
+# REVISION: 10 mai 2022
+#
+# LICENCE :
+# Copyright (C) 2022 Babilinx, Yannick Defais aka Chevek, Wamuu-sudo, Crystal
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
+# version.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see https://www.gnu.org/licenses/.
+#===================================================================================
+
+echo -e "
+Utilisation : orchid-[OPTION]... [ARGUMENT]...
+Suite d'outils facilitant la maintenance du système.
+
+Certains arguments sont obligatoires pour certaines commandes.
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-install :
+
+Cette commande permets l'installation de logiciel. Cela permets l'acceptation de paquets masqués.
+
+Elle s'utilise comme suit :
+
+sudo orchid-install monpaquet
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-delete :
+
+Cette commande permets la suppression et le nettoyage d'un logiciel. Elle nettoie donc les dépendances et paquets inutiles après la suppression.
+
+Elle s'utilise comme suit :
+
+sudo orchid-delete monpaquet
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-update
+
+Cette commande permets la mise à jour du système. Elle effectue également un orchid-sync.
+
+Elle s'utilise comme suit :
+
+sudo orchid-update
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-update-sleep
+
+Cette commande permets la mise à jour du système et l'extinction du système à la fin, utile avant d'aller dormir.
+
+Elle s'utilise comme suit :
+
+sudo orchid-update-sleep
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-update-reboot
+
+Cette commande permets la mise à jour du système et de le redémarrer à la fin.
+
+Elle s'utilise comme suit :
+
+sudo orchid-update-reboot
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-boot-update
+
+Cette commande permets la mise à jour de grub, utile en cas de changement ou de majs du noyau.
+
+Elle s'utilise comme suit :
+
+sudo orchid-boot-update
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-kernel-up
+
+Cette commande autorise l'installation des noyaux masqués, par exemple le 5.16.17. La commande à elle seule n'installe rien, il faut lancer une mise à jour du système après.
+
+Elle s'utilise comme suit :
+
+sudo orchid-kernel-up
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-nvidia
+
+Cette commande autorise l'installation des pilotes nvidia en dernière version disponible, ainsi que les paquets nécessaires à CUDA/NVENC selon la documentation Gentoo.
+
+Elle s'utilise comme suit :
+
+sudo orchid-nvidia
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-get-tkg
+
+Télécharge l'ensemble des prérequis à la mise en place du noyau TkG. Installe aussi les dépendances manquantes. Mets à jour les dernières versions disponibles. La commande à elle seule n'installe rien, il faut lancer la commande ci-dessous par la suite.
+
+Elle s'utilise comme suit :
+
+sudo orchid-get-tkg
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-set-tkg
+
+Vérifie les dernières versions du noyau, mets à jour le repo, et exécute le script d'installation et de compilation.
+
+Elle s'utilise comme suit :
+
+sudo orchid-set-tkg
+
+--------------------------------------------------------------------------------------------------------------------------
+
+" | less
