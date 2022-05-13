@@ -5,6 +5,7 @@ sudo btrfs subvolume create /
 echo "[ok]"
 echo "Activation de l'overlay Guru permettant l'installation de grub-btrfs ..."
 sudo eselect repository enable guru && sudo emerge --sync
+sudo echo "app-backup/grub-btrfs ~amd64" >> /etc/portage/package.accept_keywords/grub-btrfs
 sudo emerge -q app-backup/grub-btrfs
 echo "[ok]"
 echo "Configuration de snapper ..."
