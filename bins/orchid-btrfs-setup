@@ -2,7 +2,7 @@
 echo ""
 echo "Vérification de la présence d'un subvolume pour la racine ..."
 sudo btrfs subvolume create /
-echo [ok]
+echo "[ok]"
 echo "Activation de l'overlay Guru permettant l'installation de grub-btrfs ..."
 sudo eselect repository enable guru && sudo emerge --sync
 sudo emerge -q app-backup/grub-btrfs
