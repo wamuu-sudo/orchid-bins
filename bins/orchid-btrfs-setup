@@ -1,0 +1,16 @@
+#!/bin/bash
+echo ""
+echo "Vérification de la présence d'un subvolume pour la racine ..."
+sudo btrfs subvolume create /
+echo [ok]
+echo "Activation de l'overlay Guru permettant l'installation de grub-btrfs ..."
+sudo eselect repository enable guru && sudo emerge --sync
+sudo emerge -q app-backup/grub-btrfs
+echo "[ok]"
+echo "Configuration de snapper ..."
+sudo snapper -c root create-config /
+sudo snapper -c root create --description first-snapshot
+echo "Activation de la première snapshot initiale ..."
+sudo orchid-boot-update
+echo "Configuration terminée."
+echo "Une snapshot est automatiquement créée à chaque installation et mise à jour du système, et est disponible via GRUB lors du démarrage."
