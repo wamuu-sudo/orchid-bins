@@ -1,7 +1,88 @@
 #!/bin/bash
+function Display_help {
+echo "Usage : $(basename $0) [-hvn] [u 1|2|3]" 2>&1
+echo "Met à jour Orchid Linux (paquets Gentoo, noyaux et flatpaks)"
+echo "  -u NOMBRE (1, 2 ou 3) Diminue les ressources utilisées pour la mise à jour :"
+echo "     1 : utilise 75% des ressources CPU pour la compilation"
+echo "     2 : utilise 50% des ressources CPU pour la compilation"
+echo "     3 : utilise 25% des ressources CPU pour la compilation, si l'utilisation globale du CPU ne dépasse pas 50%. Ce profile est conseillé pour prioriser un usage intensif de l'ordinateur pendant la mise à jour en arrière plan."
+echo "  -v Mode verbeux. Affiche toutes les sorties de compilations."
+echo "  -n Mode non-interactif : ne demande pas de confirmation pour installer les mises à jour."
+echo "  -h Affiche l'aide."
 echo ""
-echo "Syncro des métadatas, de la liste des paquets disponibles, et vérification de la présence de mises à jour ..."
+echo "Exemples :"
+echo "orchid-update -v"
+echo "     Passe en mode verbeux pour voir les logiciels se compiler."
+echo "orchid-update -v -u 3"
+echo "     Passe en mode verbeux et utilise les ressources au minimum."
+echo "orchid-update -u 3"
+echo "     Utilise les ressources au minimum."
+exit 1
+}
+# Get the options
+VERBOSE='false'
+QUIET=""
+QUIET_ALONE=""
+USAGE=""
+ASK="a"
+while getopts ":hvnu:" option; do
+   case $option in
+      h) # display help
+         Display_help
+         exit;;
+      u) # CPU usage profiles, half-up rounding
+      	 PROCESSORS=$(grep -c processor /proc/cpuinfo)
+      	 RAM_SIZE_GB=$(( ($(cat /proc/meminfo|grep MemTotal|sed "s/[^[[:digit:]]*//g")+1000000/2)/1000000 ))   # Total Memory in GB, round half-up
+         if [[ $OPTARG = "1" ]];then
+         		PERCENT=75
+         		#USAGE="MAKEOPTS=\"--jobs=3 --load-average=${PROCESSORS}\" "
+         elif [[ $OPTARG = "2" ]];then
+         		PERCENT=50
+         		#USAGE="MAKEOPTS=\"--jobs=2 --load-average=${PROCESSORS}\" "         		
+         elif [[ $OPTARG = "3" ]];then
+         		PERCENT=25
+         		#USAGE="MAKEOPTS=\"--jobs=1 --load-average=2\" "         		
+         fi
+				 if [[ "${PERCENT}" -eq "25" ]];then	# if asked for 25%, set load-average to 50%
+         		LOAD_AVG=$(( ( ( 50 * ${PROCESSORS} ) + 100 / 2 ) / 100 ))
+         else																# if not asked for 25%, set load-average to 100%
+         		LOAD_AVG=${PROCESSORS}
+         fi
+         if [[ "${PROCESSORS}" -gt "2" ]];then	#let's half-up ( X / Y ) = ( X + Y / 2 ) / Y
+         		JOBS=$(( ( ( ${PERCENT} * ${PROCESSORS} ) + 100 / 2 ) / 100 ))
+         elif [[ "${PROCESSORS}" -eq "2" ]];then
+         		JOBS=1
+					 if [[ "${PERCENT}" -eq "75" ]];then	# if asked for 75%
+  	       		echo "Option u. Attention : impossible d'honorer la demande -u 1 car il n'y a que 2 coeurs CPU. Passage en -u 2."
+					 elif [[ "${PERCENT}" -eq "25" ]];then	# if asked for 25%
+					 		echo "Option u. Attention : il n'y a que 2 coeurs CPU. Utilisation d'1 coeur. Ajustement du load-average à 1."
+					 fi
+         elif [[ "${PROCESSORS}" -eq "1" ]];then
+ 	       		echo "Option u. Attention : il n'y a qu'un seul coeur CPU. Modification du load-average à 0.${PERCENT}"
+         		JOBS=1
+         		LOAD_AVG="0.${PERCENT}"
+	       fi
+	       # FIXME: prendre en compte la mémoire disponible pour eviter de swaper
+	       USAGE="MAKEOPTS=\"--jobs=${JOBS} --load-average=${LOAD_AVG}\" "
+	       echo "${USAGE}"
+	       sleep 5
+         ;;
+      v) # Verbose mode
+         VERBOSE='true';;
+      n) # Do not ask
+				 ASK="";;
+     \?) # Invalid option
+         echo "Erreur: option invalide -${OPTARG}."
+         exit;;
+   esac
+done
+if [[ "${VERBOSE}" == false ]];then
+	QUIET="q"
+	QUIET_ALONE="-q"
+fi
+echo ""
+echo "Syncronisation des métadatas, de la liste des paquets disponibles, et vérification de la présence de mises à jour..."
 echo ""
 echo "Attention, si un changement des USE_FLAGS est requis, la commande dispatch-conf est nécessaire pour prendre en compte le changement !"
 echo ""
-sudo orchid-sync && sudo eix-sync -q && sudo emerge -qavuDN @world && emerge @module-rebuild && flatpak update && orchid-boot-update && emerge --depclean -q
+sudo orchid-sync && sudo bash -c "eix-sync ${QUIET_ALONE}" && sudo bash -c "${USAGE}emerge -${QUIET}${ASK}vuDN @world" && sudo emerge @module-rebuild && flatpak update && orchid-boot-update && sudo bash -c "emerge --depclean ${QUIET_ALONE}"
