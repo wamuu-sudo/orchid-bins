@@ -1,0 +1,5 @@
+#!/bin/bash
+cd /etc
+sudo rm -rf os-release && sudo rm -rf gentoo-release
+sudo wget https://raw.githubusercontent.com/wamuu-sudo/orchid/main/testing/workaround/os-release &> /dev/null
+sudo wget https://raw.githubusercontent.com/wamuu-sudo/orchid/main/testing/workaround/gentoo-release &> /dev/null
