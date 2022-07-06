@@ -164,4 +164,24 @@ sudo orchid-workaround
 
 --------------------------------------------------------------------------------------------------------------------------
 
+orchid-fetch
+
+Neofetch spécial Orchid.
+
+Elle s'utilise comme suit :
+
+orchid-fetch
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-optimizer
+
+Recompile le système complet avec les optimisations, active le mode Chad Perfs +.
+
+Elle s'utilise comme suit :
+
+sudo orchid-optimizer
+
+--------------------------------------------------------------------------------------------------------------------------
+
 " | less
