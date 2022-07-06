@@ -1,0 +1,14 @@
+#!/bin/bash
+echo "Basculement sur la sync via git ..."
+echo "Nettoyage de l'ancienne structure ..."
+sudo rm -f /etc/portage/repos.conf/gentoo.conf
+sudo rm -rf /var/db/repos/gentoo
+cd /etc/portage/repos.conf
+echo "Mise en place de la nouvelle méthode ..."
+wget https://raw.githubusercontent.com/wamuu-sudo/orchid/main/swapper/git-conf/gentoo.conf
+echo "Syncronisation des dépots, cette opération peut prendre plusieurs minutes ..."
+emerge --sync
+echo "Syncronisation des métadatas, la durée varie en fonction de votre matériel ..."
+egencache --update --repo gentoo --jobs=4
+eix-sync
+echo "Basculement sur git terminé. Pour revenir à la méthode initiale, utilisez la commande orchid-swap-rsync."
