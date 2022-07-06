@@ -134,4 +134,54 @@ sudo orchid-set-tkg
 
 --------------------------------------------------------------------------------------------------------------------------
 
+orchid-swap-git ou orchid-swap-rsync
+
+Modifie le mode de syncro des dépots Gentoo, git ou rsync.
+
+Elle s'utilise comme suit :
+
+sudo orchid-swap-git ou orchid-swap-rsync
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-version
+
+Applique le nom système Orchid.
+
+Elle s'utilise comme suit :
+
+sudo orchid-version
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-workaround
+
+Applique le nom système Gentoo originel, l'antéchrist de orchid-version.
+
+Elle s'utilise comme suit :
+
+sudo orchid-workaround
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-fetch
+
+Neofetch spécial Orchid.
+
+Elle s'utilise comme suit :
+
+orchid-fetch
+
+--------------------------------------------------------------------------------------------------------------------------
+
+orchid-optimizer
+
+Recompile le système complet avec les optimisations, active le mode Chad Perfs +.
+
+Elle s'utilise comme suit :
+
+sudo orchid-optimizer
+
+--------------------------------------------------------------------------------------------------------------------------
+
 " | less
